@@ -1,0 +1,9 @@
+---
+layout: 	essay
+title: 		"POA区块链配置指南"
+subtitle: 	"区块链开发-3"
+date: 		2018-06-10 12:00:00
+author: 	"shamphone"
+chapter:	"17.3"
+
+---

@@ -8,29 +8,29 @@ chapter:	"17.1"
 
 ---
 
-> 这篇文章参考[区块链技术指南](https://yeasy.gitbooks.io/blockchain_guide/content/ethereum/install.html)。但原文是Happy flow。这里把我安装过程中碰到的坑也都记录下来。我使用的是Ubuntu 14.10。这是以太坊推荐的版本。 
+> 这篇文章参考[区块链技术指南](https://yeasy.gitbooks.io/blockchain_guide/content/ethereum/install.html)。但原文是Happy flow。这里把我安装过程中碰到的坑也都记录下来。这里使用的是Ubuntu 14.10。这是以太坊推荐的版本。 
 
 最近在研究区块链。打算先搭建一个测试环境开始运行。这里记录整个搭建过程，供后来人参考。 
 整体上，分为三个步骤，安装相关软件，初始化系统，建立集群，以及最后一步，挖矿。
 我们采用的是以太坊，相对其他区块链，这是一个成熟的环境。 虽然近期有硬分支的事件，对企业应用来说，功能上还算是比较完善的。 
 
 
-##  安装部署
+##  一、安装部署
 
 ### 1.安装 Go 环境
 
-如果机器无法上外网，还得配置一下代理。 Ubuntu配置代理的方式网上很多，这里不介绍。
+如果机器无法上外网，还得配置一下代理。 Centos配置代理的方式网上很多，这里不介绍。
+golang最新版本是1.10.3，从golang.org下载。 
 
 ```hbs
-  curl -O https://storage.googleapis.com/golang/go1.5.1.linux-amd64.tar.gz
-  tar -C /usr/local -xzf go1.5.1.linux-amd64.tar.gz
+  curl -O https://storage.googleapis.com/golang/go1.10.3.linux-amd64.tar.gz
+  tar -C /usr/local -xzf go1.10.3.linux-amd64.tar.gz
   mkdir -p ~/go; echo "export GOPATH=$HOME/go" >> ~/.bashrc
   echo "export PATH=$PATH:$HOME/go/bin:/usr/local/go/bin" >> ~/.bashrc
   source ~/.bashrc
 ```
 
 ### 2.安装 ethereum
-
 
 ```hbs
   sudo apt-get install software-properties-common
@@ -60,9 +60,6 @@ chapter:	"17.1"
   sudo apt-get install ethereum
 ```
 
-
-
-
 ### 3.安装 solc 编译器
 
 
@@ -88,7 +85,45 @@ chapter:	"17.1"
 
 这样相关软件已经安装完毕。 
 
-## 搭建私链
+## 4. 从源码安装
+
+下载和编译 Geth
+用以下命令安装 C 的编译器。
+
+```hbs
+$ apt-get install -y build-essential
+```
+
+下载选定的 go-ethereum 源码版本，如最新的社区版本：
+
+```hbs
+$ git clone https://github.com/ethereum/go-ethereum
+```
+
+编译安装 Geth。
+
+```hbs
+$ cd go-ethereum
+$ make geth
+```
+安装成功后，可用 build/bin/geth --help 查看各命令和选项。例如，用以下命令可查看 Geth 版本为 1.8.11-unstable。
+
+```
+[jigsaw@kube01 cocolian]$ geth version
+Geth
+Version: 1.8.11-unstable
+Git Commit: e8ea5aa0d59a722df616bc8c8cffacadd23c082d
+Architecture: amd64
+Protocol Versions: [63 62]
+Network Id: 1
+Go Version: go1.10.2
+Operating System: linux
+GOPATH=/home/jigsaw/go
+GOROOT=/usr/local/go
+```  
+说明安装完成
+
+## 二、搭建私链
 
 ### 1.启动geth服务
 
