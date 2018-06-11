@@ -3,7 +3,7 @@ layout:     post
 title:      "20180402-银行网联业务对接"                                                                           
 date:       2018-04-02 19:00:00                                                                           
 author:     "支付产品架构群"                                      
-tag:		[publish]                                
+tag:		[hidden]                                
 --- 	
 
    
